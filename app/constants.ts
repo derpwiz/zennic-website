@@ -60,6 +60,11 @@ export const SOCIAL_PROOF = [
     title: 'CFO, Tech Startup',
     quote: 'zennic has transformed how we analyze competitor financials. Incredible time-saver!',
   },
+  {
+    name: 'Jennifer Park',
+    title: 'Investment Advisor',
+    quote: 'The plain English summaries have made my client presentations so much more effective.',
+  },
 ];
 
 export const FAQ_ITEMS = [
@@ -74,6 +79,10 @@ export const FAQ_ITEMS = [
   {
     question: 'Do I need financial expertise to use zennic?',
     answer: 'Not at all! zennic translates complex financial jargon into plain English, making it accessible for everyone.',
+  },
+  {
+    question: 'Is there a limit to how many documents I can process?',
+    answer: 'Our standard plan allows for up to 50 documents per month. Enterprise plans offer unlimited document processing.',
   },
   {
     question: 'When will zennic be available?',
