@@ -29,7 +29,7 @@ A responsive landing page for zennic, a Computer fintech app that generates plai
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/your-username/zennic-website.git
+git clone https://github.com/derpwiz/zennic-website.git
 cd zennic-website
 ```
 
