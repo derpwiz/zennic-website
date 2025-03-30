@@ -13,7 +13,29 @@ export function Header() {
             {SITE_CONFIG.name}
           </Link>
         </div>
+        <nav className="hidden md:block">
+          <ul className="flex space-x-8">
+            <li>
+              <Link href="/#features" className="text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
+                Features
+              </Link>
+            </li>
+            <li>
+              <Link href="/#testimonials" className="text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
+                Testimonials
+              </Link>
+            </li>
+            <li>
+              <Link href="/#faq" className="text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
+                FAQ
+              </Link>
+            </li>
+          </ul>
+        </nav>
         <div className="flex items-center space-x-4">
+          <Link href="/#waitlist" className="hidden rounded-md bg-blue-600 px-3.5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 md:block">
+            Join Waitlist
+          </Link>
           <ThemeToggle />
         </div>
       </div>
