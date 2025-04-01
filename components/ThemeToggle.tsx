@@ -80,15 +80,20 @@ export function ThemeToggle() {
   };
 
   return (
-    <button
-      onClick={toggleTheme}
-      className="rounded-full p-2 transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
-      aria-label={`Switch theme, current theme is ${theme}`}
-      title={`Current theme: ${theme}`}
-    >
-      {theme === 'light' && <Sun className="h-5 w-5" />}
-      {theme === 'dark' && <Moon className="h-5 w-5" />}
-      {theme === 'system' && <Monitor className="h-5 w-5" />}
-    </button>
+    <div className="relative group">
+      <button
+        onClick={toggleTheme}
+        className="rounded-full p-2 transition-colors hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+        aria-label={`Switch theme, current theme is ${theme}`}
+        title={`Current theme: ${theme}`}
+      >
+        {theme === 'light' && <Sun className="h-5 w-5 text-amber-500" />}
+        {theme === 'dark' && <Moon className="h-5 w-5 text-indigo-400" />}
+        {theme === 'system' && <Monitor className="h-5 w-5 text-gray-500" />}
+      </button>
+      <div className="absolute right-0 mt-2 hidden w-40 rounded-md bg-white p-2 text-xs text-gray-700 shadow-lg group-hover:block dark:bg-gray-800 dark:text-gray-300">
+        Click to cycle through light, dark, and system themes
+      </div>
+    </div>
   );
 }
