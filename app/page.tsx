@@ -176,6 +176,70 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Benefits Section */}
+      <section className="py-16 bg-gray-50 dark:bg-gray-800">
+        <div className="container-custom">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              Why Choose zennic?
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+              Save time and gain deeper insights with our innovative approach
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <div className="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-md">
+                <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+                  Boost Productivity
+                </h3>
+                <ul className="space-y-3">
+                  <li className="flex items-start">
+                    <div className="flex-shrink-0 w-5 h-5 rounded-full bg-green-500 mt-1 mr-3"></div>
+                    <p className="text-gray-700 dark:text-gray-300">Reduce analysis time by up to 80%</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="flex-shrink-0 w-5 h-5 rounded-full bg-green-500 mt-1 mr-3"></div>
+                    <p className="text-gray-700 dark:text-gray-300">Focus on insights, not data collection</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="flex-shrink-0 w-5 h-5 rounded-full bg-green-500 mt-1 mr-3"></div>
+                    <p className="text-gray-700 dark:text-gray-300">Make faster, more informed decisions</p>
+                  </li>
+                </ul>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <div className="relative aspect-video bg-gray-200 dark:bg-gray-600 rounded-xl overflow-hidden shadow-lg">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-16 h-16 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center shadow-md">
+                    <div className="w-0 h-0 border-t-8 border-t-transparent border-l-12 border-l-primary-600 border-b-8 border-b-transparent ml-1"></div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Social Proof */}
       <section className="py-16 bg-gray-50 dark:bg-gray-800">
         <div className="container-custom">
