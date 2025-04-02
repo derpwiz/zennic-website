@@ -29,6 +29,7 @@ const iconMap = {
 export default function Home() {
   const [activeAccordion, setActiveAccordion] = useState<number | null>(null);
   const [email, setEmail] = useState('');
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const toggleAccordion = (index: number) => {
     setActiveAccordion(activeAccordion === index ? null : index);
@@ -36,10 +37,30 @@ export default function Home() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission - would connect to API in production
-    console.log('Submitted email:', email);
-    alert('Thanks for joining our waitlist! We\'ll be in touch soon.');
-    setEmail('');
+    
+    // Get form data
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+    
+    // Submit the form data to Buttondown via fetch
+    fetch('https://buttondown.com/api/emails/embed-subscribe/zennic', {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'application/json',
+      },
+    })
+    .then(response => {
+      console.log('Submission response:', response);
+      // Show success message
+      setIsSubmitted(true);
+      // Reset form
+      setEmail('');
+    })
+    .catch(error => {
+      console.error('Submission error:', error);
+      // Could add error handling here
+    });
   };
 
   return (
@@ -269,29 +290,65 @@ export default function Home() {
               </p>
             </motion.div>
 
-            <motion.form
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              onSubmit={handleSubmit}
-              className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto"
+              className="max-w-md mx-auto"
             >
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
-                required
-                className="flex-1 px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500 dark:bg-gray-700 dark:text-white"
-              />
-              <button
-                type="submit"
-                className="btn-primary whitespace-nowrap"
-              >
-                {WAITLIST.buttonText}
-              </button>
-            </motion.form>
+              <div className="bg-white dark:bg-gray-700 rounded-lg shadow-md p-8">
+                <span className="inline-block px-4 py-2 bg-gray-800 dark:bg-gray-600 text-white font-medium rounded-full text-sm mb-4">
+                  {isSubmitted ? 'Thanks!' : 'Join Our Waitlist'}
+                </span>
+                
+                {isSubmitted ? (
+                  <div className="text-center py-6">
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Thanks for subscribing!</h3>
+                    <p className="text-gray-700 dark:text-gray-300 mb-4">
+                      Please check your email to confirm your subscription.
+                    </p>
+                    <button
+                      onClick={() => setIsSubmitted(false)}
+                      className="text-primary-600 dark:text-primary-400 underline text-sm"
+                    >
+                      Sign up another email
+                    </button>
+                  </div>
+                ) : (
+                  <form
+                    onSubmit={handleSubmit}
+                    className="embeddable-buttondown-form"
+                  >
+                    <div className="mb-4">
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 text-left">Email</label>
+                      <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="you@example.com"
+                        required
+                        className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-300"
+                      />
+                    </div>
+                    <input type="hidden" value="1" name="embed" />
+                    <button
+                      type="submit"
+                      className="w-full btn-primary py-3 rounded-lg transition-all duration-300"
+                    >
+                      Subscribe
+                    </button>
+                    <p className="mt-4 text-xs text-gray-500 dark:text-gray-400 text-center">
+                      <a href="https://buttondown.com" target="_blank" rel="noopener noreferrer" className="text-primary-600 dark:text-primary-400 hover:underline">
+                        Powered by Buttondown
+                      </a>
+                    </p>
+                  </form>
+                )}
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
