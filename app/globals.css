@@ -7,12 +7,17 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 255, 255, 255;
   --background-end-rgb: 245, 245, 245;
+  --primary-color: 37, 99, 235;
+  --primary-light: 219, 234, 254;
+  --primary-dark: 30, 64, 175;
 }
 
 .dark {
   --foreground-rgb: 255, 255, 255;
   --background-start-rgb: 15, 23, 42;
   --background-end-rgb: 3, 7, 18;
+  --primary-light: 30, 58, 138;
+  --primary-dark: 59, 130, 246;
 }
 
 /* Add smooth transition for theme changes */
@@ -28,6 +33,36 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+}
+
+/* Custom animations */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 3s ease-in-out infinite;
 }
 
 /* Custom component classes */
@@ -46,5 +81,15 @@ body {
   
   .container-custom {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .card {
+    @apply bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md 
+           transition-all duration-300 border border-gray-100 dark:border-gray-700 
+           overflow-hidden;
+  }
+  
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-blue-500;
   }
 }
